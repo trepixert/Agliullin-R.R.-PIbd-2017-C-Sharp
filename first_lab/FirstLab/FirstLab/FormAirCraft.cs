@@ -13,7 +13,7 @@ namespace WindowsArmorAirCraft
 {
     public partial class FormAirCraft: Form
     {
-        private AirCraft airCraft;
+        private IArmorAirCraft armorAirCraft;
         public FormAirCraft()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace WindowsArmorAirCraft
         {
             Bitmap bmp = new Bitmap(pictureAirCraft.Width, pictureAirCraft.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            airCraft.DrawAirCraft(gr);
+            armorAirCraft.DrawArmorAirCraft(gr);
             pictureAirCraft.Image = bmp;
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -34,8 +34,8 @@ namespace WindowsArmorAirCraft
         private void CreateButton_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            airCraft = new AirCraft(rnd.Next(1000, 3000), rnd.Next(5000, 10000), Color.Black, Color.Gray);
-            airCraft.SetPosition(rnd.Next(100, 300), rnd.Next(100, 300), pictureAirCraft.Width, pictureAirCraft.Height);
+            armorAirCraft = new BaseArmorAirCraft(rnd.Next(1000, 3000), rnd.Next(5000, 10000), Color.Gray);
+            armorAirCraft.SetPosition(40, 40, pictureAirCraft.Width, pictureAirCraft.Height);
             Draw();
         }
 
@@ -46,21 +46,27 @@ namespace WindowsArmorAirCraft
             switch (name)
             {
                 case "Up":
-                    airCraft.moveAirCraft(Direction.Up);
+                    armorAirCraft.MoveAirCraft(Direction.Up);
                     break;
                 case "Down":
-                    airCraft.moveAirCraft(Direction.Down);
+                    armorAirCraft.MoveAirCraft(Direction.Down);
                     break;
                 case "ToLeft":
-                    airCraft.moveAirCraft(Direction.Left);
+                    armorAirCraft.MoveAirCraft(Direction.Left);
                     break;
                 case "ToRight":
-                    airCraft.moveAirCraft(Direction.Right);
+                    armorAirCraft.MoveAirCraft(Direction.Right);
                     break;
             }
             Draw();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            armorAirCraft = new AirCraft(rnd.Next(100,300), rnd.Next(1000,5000), Color.Gray, Color.Red, true, true, Color.Black);
+            armorAirCraft.SetPosition(rnd.Next(100,500), rnd.Next(100,500), pictureAirCraft.Width, pictureAirCraft.Height);
+            Draw();
+        }
     }
 }

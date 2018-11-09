@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractArmorAirCraft.cs" />
+    <Compile Include="BaseArmorAirCraft.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="FormAirCraft.cs">
       <SubType>Form</SubType>
@@ -52,6 +54,7 @@
     <Compile Include="FormAirCraft.Designer.cs">
       <DependentUpon>FormAirCraft.cs</DependentUpon>
     </Compile>
+    <Compile Include="IArmorAirCraft.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AirCraft.cs" />
