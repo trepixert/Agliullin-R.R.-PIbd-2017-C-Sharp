@@ -54,12 +54,22 @@
     <Compile Include="FormAirCraft.Designer.cs">
       <DependentUpon>FormAirCraft.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHangar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHangar.Designer.cs">
+      <DependentUpon>FormHangar.cs</DependentUpon>
+    </Compile>
     <Compile Include="IArmorAirCraft.cs" />
+    <Compile Include="Hangar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AirCraft.cs" />
     <EmbeddedResource Include="FormAirCraft.resx">
       <DependentUpon>FormAirCraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHangar.resx">
+      <DependentUpon>FormHangar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

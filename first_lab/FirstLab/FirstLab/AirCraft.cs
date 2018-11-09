@@ -44,11 +44,11 @@ namespace WindowsArmorAirCraft
             }
             if (modernizide)
             {
-                g.DrawEllipse(pen, _startPosX + 75, _startPosY + 45, 260, 60);
+                g.DrawEllipse(pen, _startPosX + 80, _startPosY + 45, 250, 60);
                 g.DrawEllipse(pen, _startPosX + 215, _startPosY - 35, 90, 220);
                 g.DrawEllipse(pen, _startPosX + 105, _startPosY + 10, 40, 120);
                 Brush filler = new SolidBrush(DopColor);
-                g.FillEllipse(filler, _startPosX + 75, _startPosY + 45, 260, 60);
+                g.FillEllipse(filler, _startPosX + 80, _startPosY + 45, 250, 60);
                 g.FillEllipse(filler, _startPosX + 215, _startPosY - 35, 90, 220);
                 g.FillEllipse(filler, _startPosX + 105, _startPosY + 10, 40, 120);
             }
