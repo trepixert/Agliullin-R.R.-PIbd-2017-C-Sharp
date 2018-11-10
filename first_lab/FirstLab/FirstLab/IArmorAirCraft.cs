@@ -7,10 +7,11 @@ using System.Drawing;
 
 namespace WindowsArmorAirCraft
 {
-    interface IArmorAirCraft
+    public interface IArmorAirCraft
     {
         void SetPosition(int x, int y, int width, int height);
         void MoveAirCraft(Direction direction);
         void DrawArmorAirCraft(Graphics g);
+        void SetMainColor(Color color);
     }
 }
