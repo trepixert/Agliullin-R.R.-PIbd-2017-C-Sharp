@@ -127,7 +127,6 @@
             this.Name = "FormAirCraft";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAirCraft";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureAirCraft)).EndInit();
             this.ResumeLayout(false);
 
