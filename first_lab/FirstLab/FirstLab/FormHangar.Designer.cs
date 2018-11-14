@@ -50,6 +50,26 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(760, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(93, 41);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Припарковать самолет";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonSetAirCraft_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(761, 59);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 47);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Припарковать крутой самолет";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonSetCoolAirCraft_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.pictureBox2);
