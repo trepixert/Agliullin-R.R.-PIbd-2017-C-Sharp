@@ -28,11 +28,6 @@ namespace WindowsArmorAirCraft
             pictureBox1.Image = bmp;
         }
 
-        private void pictureBoxHangar(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonSetAirCraft_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -79,11 +74,6 @@ namespace WindowsArmorAirCraft
                 }
                 Draw();
             }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
