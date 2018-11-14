@@ -50,7 +50,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(626, 461);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBoxHangar);
             // 
             // button1
             // 
@@ -84,7 +83,6 @@
             this.groupBox1.Size = new System.Drawing.Size(289, 332);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // pictureBox2
             // 

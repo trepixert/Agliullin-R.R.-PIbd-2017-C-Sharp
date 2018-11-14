@@ -36,11 +36,6 @@ namespace WindowsArmorAirCraft
             }
         }
 
-        private void pictureBoxHangar(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonSetAirCraft_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -102,13 +97,6 @@ namespace WindowsArmorAirCraft
                 }
             }
         }
-
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void listBoxLevels_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             Draw();
