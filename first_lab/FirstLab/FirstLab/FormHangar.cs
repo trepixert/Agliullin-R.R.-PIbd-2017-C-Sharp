@@ -16,16 +16,16 @@ namespace WindowsArmorAirCraft
         public FormHangar()
         {
             InitializeComponent();
-            hangar = new Hangar<IArmorAirCraft>(20, pictureBox1.Width, pictureBox1.Height);
+            hangar = new Hangar<IArmorAirCraft>(20, pictureBoxMain.Width, pictureBoxMain.Height);
             Draw();
         }
 
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
             Graphics gr = Graphics.FromImage(bmp);
             hangar.Draw(gr);
-            pictureBox1.Image = bmp;
+            pictureBoxMain.Image = bmp;
         }
 
         private void buttonSetAirCraft_Click(object sender, EventArgs e)
@@ -56,21 +56,21 @@ namespace WindowsArmorAirCraft
 
         private void buttonGetCar_Click(object sender, EventArgs e)
         {
-            if(maskedTextBox1.Text != "")
+            if(maskedTextToGetIndex.Text != "")
             {
-                var airCraft = hangar - Convert.ToInt32(maskedTextBox1.Text);
+                var airCraft = hangar - Convert.ToInt32(maskedTextToGetIndex.Text);
                 if (airCraft != null)
                 {
-                    Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                    Bitmap bmp = new Bitmap(pictureBoxRemoved.Width, pictureBoxRemoved.Height);
                     Graphics gr = Graphics.FromImage(bmp);
-                    airCraft.SetPosition(40, 40, pictureBox2.Width, pictureBox2.Height);
+                    airCraft.SetPosition(40, 40, pictureBoxRemoved.Width, pictureBoxRemoved.Height);
                     airCraft.DrawArmorAirCraft(gr);
-                    pictureBox2.Image = bmp;
+                    pictureBoxRemoved.Image = bmp;
                 }
                 else
                 {
-                    Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-                    pictureBox2.Image = bmp;
+                    Bitmap bmp = new Bitmap(pictureBoxRemoved.Width, pictureBoxRemoved.Height);
+                    pictureBoxRemoved.Image = bmp;
                 }
                 Draw();
             }
