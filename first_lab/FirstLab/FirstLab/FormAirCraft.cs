@@ -31,7 +31,7 @@ namespace WindowsArmorAirCraft
         {
             Random rnd = new Random();
             armorAirCraft = new BaseArmorAirCraft(rnd.Next(1000, 3000), rnd.Next(5000, 10000), Color.Gray);
-            armorAirCraft.SetPosition(40, 40, pictureAirCraft.Width, pictureAirCraft.Height);
+            armorAirCraft.SetPosition(rnd.Next(100,500), rnd.Next(100,500), pictureAirCraft.Width, pictureAirCraft.Height);
             Draw();
         }
 
