@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextToGetIndex = new System.Windows.Forms.MaskedTextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBoxRemoved = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoved)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBoxMain
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(626, 461);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxMain.Location = new System.Drawing.Point(0, 1);
+            this.pictureBoxMain.Name = "pictureBoxMain";
+            this.pictureBoxMain.Size = new System.Drawing.Size(626, 461);
+            this.pictureBoxMain.TabIndex = 0;
+            this.pictureBoxMain.TabStop = false;
             // 
             // button1
             // 
@@ -72,9 +72,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.pictureBoxRemoved);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.maskedTextBox1);
+            this.groupBox1.Controls.Add(this.maskedTextToGetIndex);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(608, 130);
@@ -101,12 +101,12 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Место:";
             // 
-            // maskedTextBox1
+            // maskedTextToGetIndex
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(129, 19);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(46, 20);
-            this.maskedTextBox1.TabIndex = 2;
+            this.maskedTextToGetIndex.Location = new System.Drawing.Point(129, 19);
+            this.maskedTextToGetIndex.Name = "maskedTextToGetIndex";
+            this.maskedTextToGetIndex.Size = new System.Drawing.Size(46, 20);
+            this.maskedTextToGetIndex.TabIndex = 2;
             // 
             // button3
             // 
@@ -118,13 +118,13 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.buttonGetCar_Click);
             // 
-            // pictureBox2
+            // pictureBoxRemoved
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(-109, 49);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(381, 270);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
+            this.pictureBoxRemoved.Location = new System.Drawing.Point(-109, 49);
+            this.pictureBoxRemoved.Name = "pictureBoxRemoved";
+            this.pictureBoxRemoved.Size = new System.Drawing.Size(381, 270);
+            this.pictureBoxRemoved.TabIndex = 4;
+            this.pictureBoxRemoved.TabStop = false;
             // 
             // FormHangar
             // 
@@ -134,26 +134,26 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormHangar";
             this.Text = "FormHangar";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoved)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBoxRemoved;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextToGetIndex;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }
