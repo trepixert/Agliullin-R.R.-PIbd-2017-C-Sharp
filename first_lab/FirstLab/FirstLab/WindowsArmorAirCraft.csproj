@@ -54,6 +54,12 @@
     <Compile Include="FormAirCraft.Designer.cs">
       <DependentUpon>FormAirCraft.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAirCraftConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAirCraftConfig.Designer.cs">
+      <DependentUpon>FormAirCraftConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormHangar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="AirCraft.cs" />
     <EmbeddedResource Include="FormAirCraft.resx">
       <DependentUpon>FormAirCraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAirCraftConfig.resx">
+      <DependentUpon>FormAirCraftConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHangar.resx">
       <DependentUpon>FormHangar.cs</DependentUpon>

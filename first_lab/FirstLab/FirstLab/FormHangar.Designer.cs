@@ -37,6 +37,8 @@
             this.maskedTextToGetIndex = new System.Windows.Forms.MaskedTextBox();
             this.buttonGetCar = new System.Windows.Forms.Button();
             this.pictureBoxRemoved = new System.Windows.Forms.PictureBox();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.button_addAirCraft = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoved)).BeginInit();
@@ -136,11 +138,22 @@
             this.pictureBoxRemoved.TabIndex = 4;
             this.pictureBoxRemoved.TabStop = false;
             // 
+            // button_addAirCraft
+            // 
+            this.button_addAirCraft.Location = new System.Drawing.Point(772, 42);
+            this.button_addAirCraft.Name = "button_addAirCraft";
+            this.button_addAirCraft.Size = new System.Drawing.Size(83, 34);
+            this.button_addAirCraft.TabIndex = 5;
+            this.button_addAirCraft.Text = "Добавить самолет";
+            this.button_addAirCraft.UseVisualStyleBackColor = true;
+            this.button_addAirCraft.Click += new System.EventHandler(this.button_addAirCraft_Click);
+            // 
             // FormHangar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.button_addAirCraft);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonSetCoolAirCraft);
@@ -162,6 +175,7 @@
         private System.Windows.Forms.Button buttonSetCoolAirCraft;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Button button_addAirCraft;
         private System.Windows.Forms.PictureBox pictureBoxRemoved;
         private System.Windows.Forms.Button buttonGetCar;
         private System.Windows.Forms.MaskedTextBox maskedTextToGetIndex;

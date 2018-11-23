@@ -16,6 +16,7 @@ namespace WindowsArmorAirCraft
         public int MaxSpeed { protected set; get; }
         public float Weight { protected set; get; }
         public Color MainColor { protected set; get; }
+
         public void SetPosition(int x, int y, int width, int height)
         {
             _startPosX = x;
@@ -23,7 +24,13 @@ namespace WindowsArmorAirCraft
             _pictureWidth = width;
             _pictureHeight = height;
         }
+        public void SetMainColor(Color color)
+        {
+            MainColor = color;
+        }
+
         public abstract void DrawArmorAirCraft(Graphics g);
+
         public abstract void MoveAirCraft(Direction direction);
     }
 }

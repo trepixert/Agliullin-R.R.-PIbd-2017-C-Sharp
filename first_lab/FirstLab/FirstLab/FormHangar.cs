@@ -14,6 +14,7 @@ namespace WindowsArmorAirCraft
     {
         MultiLevelHangar hangar;
         private const int countLevel = 5;
+        FormAirCraftConfig form;
         public FormHangar()
         {
             InitializeComponent();
@@ -97,9 +98,30 @@ namespace WindowsArmorAirCraft
                 }
             }
         }
+
         private void listBoxLevels_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void button_addAirCraft_Click(object sender, EventArgs e)
+        {
+            form = new FormAirCraftConfig();
+            form.AddEvent(AddAirCraft);
+            form.Show();
+        }
+
+        private void AddAirCraft(IArmorAirCraft airCraft)
+
+        {
+            if (airCraft != null && listBoxLevels.SelectedIndex > -1)
+            {
+                int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
+                if (place > -1)
+                    Draw();
+                else
+                    MessageBox.Show("Машину не удалось поставить!");
+            }
         }
     }
 }

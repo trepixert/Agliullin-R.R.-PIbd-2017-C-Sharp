@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsArmorAirCraft
 {
+    public delegate void airCraftDelegate(IArmorAirCraft armorAirCraft);
     static class Program
     {
         /// <summary>

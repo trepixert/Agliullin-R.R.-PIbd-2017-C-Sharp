@@ -54,6 +54,7 @@ namespace WindowsArmorAirCraft
             }
             base.DrawArmorAirCraft(g);
         }
+
         public override void MoveAirCraft(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
@@ -76,6 +77,11 @@ namespace WindowsArmorAirCraft
                         _startPosY += step;
                     break;
             }
+        }
+
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }
