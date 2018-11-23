@@ -12,20 +12,28 @@ namespace WindowsArmorAirCraft
 {
     public partial class FormHangar : Form
     {
-        Hangar<IArmorAirCraft> hangar;
+        MultiLevelHangar hangar;
+        private const int countLevel = 5;
         public FormHangar()
         {
             InitializeComponent();
-            hangar = new Hangar<IArmorAirCraft>(20, pictureBoxMain.Width, pictureBoxMain.Height);
-            Draw();
+            hangar = new MultiLevelHangar(countLevel, pictureBox1.Width, pictureBox2.Height);
+            for(int i = 0; i < countLevel; i++)
+            {
+                listBoxLevels.Items.Add("Уровень: " + (i + 1));
+            }
+            listBoxLevels.SelectedIndex = 0;
         }
 
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            hangar.Draw(gr);
-            pictureBoxMain.Image = bmp;
+            if (listBoxLevels.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                hangar[listBoxLevels.SelectedIndex].Draw(gr);
+                pictureBox1.Image = bmp;
+            }
         }
 
         private void buttonSetAirCraft_Click(object sender, EventArgs e)
@@ -34,46 +42,64 @@ namespace WindowsArmorAirCraft
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var airCraft = new BaseArmorAirCraft(100, 1000, dialog.Color);
-                int place = hangar + airCraft;
+                int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
+                if (place == -1)
+                {
+                    MessageBox.Show("Нет свободных мест!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 Draw();
             }
         }
 
         private void buttonSetCoolAirCraft_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    var airCraft = new AirCraft(100, 1000, dialog.Color, dialogDop.Color, true, true, Color.Black);
-                    int place = hangar + airCraft;
-                    Draw();
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
+                    {
+                        var airCraft = new AirCraft(100, 1000, dialog.Color, dialogDop.Color, true, true, Color.Black);
+                        int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
+                        if (place == -1)
+                        {
+                            MessageBox.Show("Нет свободных мест!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        Draw();
+                    }
                 }
             }
         }
 
         private void buttonGetCar_Click(object sender, EventArgs e)
         {
-            if(maskedTextToGetIndex.Text != "")
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                var airCraft = hangar - Convert.ToInt32(maskedTextToGetIndex.Text);
-                if (airCraft != null)
+                if (maskedTextBox1.Text != "")
                 {
-                    Bitmap bmp = new Bitmap(pictureBoxRemoved.Width, pictureBoxRemoved.Height);
-                    Graphics gr = Graphics.FromImage(bmp);
-                    airCraft.SetPosition(40, 40, pictureBoxRemoved.Width, pictureBoxRemoved.Height);
-                    airCraft.DrawArmorAirCraft(gr);
-                    pictureBoxRemoved.Image = bmp;
+                    var airCraft = hangar[listBoxLevels.SelectedIndex] - Convert.ToInt32(maskedTextBox1.Text);
+                    if (airCraft != null)
+                    {
+                        Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                        Graphics gr = Graphics.FromImage(bmp);
+                        airCraft.SetPosition(40, 40, pictureBox2.Width, pictureBox2.Height);
+                        airCraft.DrawArmorAirCraft(gr);
+                        pictureBox2.Image = bmp;
+                    }
+                    else
+                    {
+                        Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                        pictureBox2.Image = bmp;
+                    }
+                    Draw();
                 }
-                else
-                {
-                    Bitmap bmp = new Bitmap(pictureBoxRemoved.Width, pictureBoxRemoved.Height);
-                    pictureBoxRemoved.Image = bmp;
-                }
-                Draw();
             }
+        }
+        private void listBoxLevels_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            Draw();
         }
     }
 }

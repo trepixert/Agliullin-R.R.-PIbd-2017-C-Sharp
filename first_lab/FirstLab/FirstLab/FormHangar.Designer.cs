@@ -100,6 +100,7 @@
             this.place.Size = new System.Drawing.Size(42, 13);
             this.place.TabIndex = 1;
             this.place.Text = "Место:";
+
             // 
             // maskedTextToGetIndex
             // 
@@ -108,6 +109,15 @@
             this.maskedTextToGetIndex.Size = new System.Drawing.Size(46, 20);
             this.maskedTextToGetIndex.TabIndex = 2;
             // 
+            // listBoxLevels
+            // 
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.Location = new System.Drawing.Point(629, 12);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(120, 95);
+            this.listBoxLevels.TabIndex = 4;
+            this.listBoxLevels.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged_1);
+            //
             // buttonGetCar
             // 
             this.buttonGetCar.Location = new System.Drawing.Point(181, 19);
@@ -131,6 +141,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonSetCoolAirCraft);
             this.Controls.Add(this.buttonSetAirCraft);
@@ -142,7 +153,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemoved)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -151,6 +161,7 @@
         private System.Windows.Forms.Button buttonSetAirCraft;
         private System.Windows.Forms.Button buttonSetCoolAirCraft;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox listBoxLevels;
         private System.Windows.Forms.PictureBox pictureBoxRemoved;
         private System.Windows.Forms.Button buttonGetCar;
         private System.Windows.Forms.MaskedTextBox maskedTextToGetIndex;
