@@ -12,15 +12,15 @@ namespace WindowsArmorAirCraft
         private Dictionary<int, T> _places;
         private int _maxCount;
         private int PictureWidth { get; set; }
-        private int PictureHeigth { get; set; }
+        private int PictureHeight { get; set; }
         private int _placeSizeWidth = 210;
-        private int _placeSizeHeigth = 80;
+        private int _placeSizeHeight = 80;
         
         public Hangar(int sizes, int pictureWidth, int pictureHeight)
         {
             _maxCount = sizes;
             _places = new Dictionary<int, T>();
-            PictureHeigth = pictureHeight;
+            PictureHeight = pictureHeight;
             PictureWidth = pictureWidth;
         }
 
@@ -35,7 +35,7 @@ namespace WindowsArmorAirCraft
                 if (p.CheckFreePlace(i))
                 {
                     p._places.Add(i, AirCraft);
-                    p._places[i].SetPosition(5 + i / 10 * p._placeSizeWidth - 80, i % 5 * (p._placeSizeHeigth + 145) + 40, p.PictureWidth, p.PictureHeigth);
+                    p._places[i].SetPosition(5 + i / 10 * p._placeSizeWidth - 80, i % 5 * (p._placeSizeHeight + 145) + 40, p.PictureWidth, p.PictureHeight);
                     return i;
                 }
             }
@@ -70,9 +70,27 @@ namespace WindowsArmorAirCraft
             {
                 for (int j = 0; j < 4; ++j)
                 {
-                    g.DrawLine(pen, i * _placeSizeWidth, j * (_placeSizeHeigth+145), i * _placeSizeWidth + 110, j * (_placeSizeHeigth+145));
+                    g.DrawLine(pen, i * _placeSizeWidth, j * (_placeSizeHeight+145), i * _placeSizeWidth + 110, j * (_placeSizeHeight+145));
                 }
                 g.DrawLine(pen, i * (_placeSizeWidth+50), 0, i * (_placeSizeWidth+50), 450);
+            }
+        }
+        public T this[int ind]
+        {
+            get
+            {
+                if (_places.ContainsKey(ind))
+                    return _places[ind];
+                return null;
+            }
+            set
+            {
+                if (CheckFreePlace(ind))
+                {
+                    _places.Add(ind, value);
+                    _places[ind].SetPosition(5 + ind / 10 * _placeSizeWidth - 80, ind % 5 *
+(_placeSizeHeight + 145)+40, PictureWidth, PictureHeight);
+                }
             }
         }
     }
