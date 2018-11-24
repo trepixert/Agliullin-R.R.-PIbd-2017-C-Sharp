@@ -16,7 +16,7 @@ namespace WindowsArmorAirCraft
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAirCraft());
+            Application.Run(new FormHangar());
         }
     }
 }
