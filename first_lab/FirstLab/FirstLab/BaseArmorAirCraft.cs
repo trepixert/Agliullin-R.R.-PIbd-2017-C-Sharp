@@ -11,6 +11,17 @@ namespace WindowsArmorAirCraft
     {
         protected const int AirCraftWidth = 100;
         protected const int AirCraftHeight = 60;
+
+        public BaseArmorAirCraft(string info)
+        {
+            string[] mainDatas = info.Split(';');
+            if (mainDatas.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(mainDatas[0]);
+                Weight = Convert.ToInt32(mainDatas[1]);
+                MainColor = Color.FromName(mainDatas[2]);
+            }
+        }
         public BaseArmorAirCraft(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
@@ -51,6 +62,11 @@ namespace WindowsArmorAirCraft
             g.FillEllipse(filler, _startPosX + 220, _startPosY - 35, 80, 220);
             g.FillEllipse(filler, _startPosX + 110, _startPosY + 10, 30, 120);
 
+        }
+
+        public override string ToString()
+        {
+            return MaxSpeed+";" + Weight+";"+MainColor.Name;
         }
     }
 }

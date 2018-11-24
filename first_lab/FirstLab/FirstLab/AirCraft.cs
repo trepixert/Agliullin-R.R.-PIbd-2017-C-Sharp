@@ -9,7 +9,6 @@ namespace WindowsArmorAirCraft
 {
     class AirCraft : BaseArmorAirCraft
     {
-        public Color MainColor { private set; get; }
         public Color DopColor { private set; get; }
         public Color GunColor { private set; get; }
         public bool modernizide { private set; get; }
@@ -25,6 +24,21 @@ namespace WindowsArmorAirCraft
             this.guns = guns;
         }
 
+        public AirCraft(string info) : base(info)
+        {
+            string[] mainDatas = info.Split(';');
+            if (mainDatas.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(mainDatas[0]);
+                Weight = Convert.ToInt32(mainDatas[1]);
+                MainColor = Color.FromName(mainDatas[2]);
+                DopColor = Color.FromName(mainDatas[3]);
+                modernizide = Convert.ToBoolean(mainDatas[4]);
+                guns = Convert.ToBoolean(mainDatas[5]);
+
+            }
+        }
+
         public override void DrawArmorAirCraft(Graphics g)
         {
             Pen pen = new Pen(DopColor);
@@ -35,7 +49,7 @@ namespace WindowsArmorAirCraft
                 g.DrawEllipse(pen, _startPosX + 220 + 30, _startPosY - 10, 70, 25);
                 g.DrawEllipse(pen, _startPosX + 220 + 30, _startPosY + 100, 80, 25);
                 g.DrawEllipse(pen, _startPosX + 220 + 30, _startPosY + 130, 70, 25);
-                Brush Filler = new SolidBrush(GunColor);
+                Brush Filler = new SolidBrush(Color.Black);
                 g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY + 20, 80, 25);
                 g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY - 10, 70, 25);
                 g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY + 100, 80, 25);
@@ -82,6 +96,11 @@ namespace WindowsArmorAirCraft
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+
+        public override string ToString()
+        {
+            return MaxSpeed + ";" + Weight + ";" + MainColor.Name+";"+DopColor.Name+";"+modernizide+";"+guns;
         }
     }
 }

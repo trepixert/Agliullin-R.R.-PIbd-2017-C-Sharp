@@ -130,7 +130,7 @@
             // 
             // panel_Black
             // 
-            this.panel_Black.BackColor = System.Drawing.SystemColors.ControlText;
+            this.panel_Black.BackColor = System.Drawing.Color.Red;
             this.panel_Black.Location = new System.Drawing.Point(621, 41);
             this.panel_Black.Name = "panel_Black";
             this.panel_Black.Size = new System.Drawing.Size(46, 51);
@@ -139,7 +139,7 @@
             // 
             // panel_White
             // 
-            this.panel_White.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel_White.BackColor = System.Drawing.Color.SaddleBrown;
             this.panel_White.Location = new System.Drawing.Point(702, 41);
             this.panel_White.Name = "panel_White";
             this.panel_White.Size = new System.Drawing.Size(46, 51);
@@ -148,7 +148,7 @@
             // 
             // panel_Green
             // 
-            this.panel_Green.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panel_Green.BackColor = System.Drawing.Color.Green;
             this.panel_Green.Location = new System.Drawing.Point(621, 114);
             this.panel_Green.Name = "panel_Green";
             this.panel_Green.Size = new System.Drawing.Size(46, 51);
@@ -157,7 +157,7 @@
             // 
             // panel_Blue
             // 
-            this.panel_Blue.BackColor = System.Drawing.Color.Blue;
+            this.panel_Blue.BackColor = System.Drawing.Color.Pink;
             this.panel_Blue.Location = new System.Drawing.Point(702, 114);
             this.panel_Blue.Name = "panel_Blue";
             this.panel_Blue.Size = new System.Drawing.Size(46, 51);
@@ -166,7 +166,7 @@
             // 
             // panel_Red
             // 
-            this.panel_Red.BackColor = System.Drawing.Color.Red;
+            this.panel_Red.BackColor = System.Drawing.Color.Purple;
             this.panel_Red.Location = new System.Drawing.Point(621, 188);
             this.panel_Red.Name = "panel_Red";
             this.panel_Red.Size = new System.Drawing.Size(46, 51);
@@ -175,7 +175,7 @@
             // 
             // panel_Yellow
             // 
-            this.panel_Yellow.BackColor = System.Drawing.Color.Yellow;
+            this.panel_Yellow.BackColor = System.Drawing.Color.Blue;
             this.panel_Yellow.Location = new System.Drawing.Point(702, 188);
             this.panel_Yellow.Name = "panel_Yellow";
             this.panel_Yellow.Size = new System.Drawing.Size(46, 51);
@@ -184,7 +184,7 @@
             // 
             // panel_Gray
             // 
-            this.panel_Gray.BackColor = System.Drawing.Color.Gray;
+            this.panel_Gray.BackColor = System.Drawing.Color.Lime;
             this.panel_Gray.Location = new System.Drawing.Point(621, 271);
             this.panel_Gray.Name = "panel_Gray";
             this.panel_Gray.Size = new System.Drawing.Size(46, 51);
@@ -193,7 +193,7 @@
             // 
             // panel_Orange
             // 
-            this.panel_Orange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel_Orange.BackColor = System.Drawing.Color.Gold;
             this.panel_Orange.Location = new System.Drawing.Point(702, 271);
             this.panel_Orange.Name = "panel_Orange";
             this.panel_Orange.Size = new System.Drawing.Size(46, 51);
