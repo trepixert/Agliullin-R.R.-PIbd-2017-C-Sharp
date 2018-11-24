@@ -7,38 +7,54 @@ using System.Threading.Tasks;
 
 namespace WindowsArmorAirCraft
 {
-    class AirCraft
+    class AirCraft : BaseArmorAirCraft
     {
-        private float _startPosX;
-        private float _startPosY;
-        private int _pictureWidth;
-        private int _pictureHeight;
-        private const int AirCraftWidth = 100;
-        private const int AirCraftHeight = 100;
-        public int MaxSpeed { private set; get; }
-        public float Weight { private set; get; }
         public Color MainColor { private set; get; }
         public Color DopColor { private set; get; }
+        public Color GunColor { private set; get; }
+        public bool modernizide { private set; get; }
+        public bool guns { private set; get; }
 
-
-        public AirCraft(int MaxSpeed, float Weight, Color MainColor, Color DopColor)
+        public AirCraft(int maxSpeed, float weight, Color mainColor, Color dopColor, bool modernizide, bool guns, Color gunColor) : base (maxSpeed, weight, mainColor)
         {
-            this.MaxSpeed = MaxSpeed;
-            this.Weight = Weight;
-            this.MainColor = MainColor;
-            this.DopColor = DopColor;
-
+            
+            MainColor = mainColor;
+            DopColor = dopColor;
+            GunColor = gunColor;
+            this.modernizide = modernizide;
+            this.guns = guns;
         }
 
-        public void SetPosition(int x, int y, int width, int height)
+        public override void DrawArmorAirCraft(Graphics g)
         {
-            _startPosX = x;
-            _startPosY = y;
-            _pictureWidth = width;
-            _pictureHeight = height;
+            Pen pen = new Pen(DopColor);
+            
+            if (guns)
+            {
+                g.DrawEllipse(pen, _startPosX + 220+30, _startPosY + 20, 80, 25);
+                g.DrawEllipse(pen, _startPosX + 220 + 30, _startPosY - 10, 70, 25);
+                g.DrawEllipse(pen, _startPosX + 220 + 30, _startPosY + 100, 80, 25);
+                g.DrawEllipse(pen, _startPosX + 220 + 30, _startPosY + 130, 70, 25);
+                Brush Filler = new SolidBrush(GunColor);
+                g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY + 20, 80, 25);
+                g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY - 10, 70, 25);
+                g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY + 100, 80, 25);
+                g.FillEllipse(Filler, _startPosX + 220 + 30, _startPosY + 130, 70, 25);
+ 
+            }
+            if (modernizide)
+            {
+                g.DrawEllipse(pen, _startPosX + 75, _startPosY + 45, 260, 60);
+                g.DrawEllipse(pen, _startPosX + 215, _startPosY - 35, 90, 220);
+                g.DrawEllipse(pen, _startPosX + 105, _startPosY + 10, 40, 120);
+                Brush filler = new SolidBrush(DopColor);
+                g.FillEllipse(filler, _startPosX + 75, _startPosY + 45, 260, 60);
+                g.FillEllipse(filler, _startPosX + 215, _startPosY - 35, 90, 220);
+                g.FillEllipse(filler, _startPosX + 105, _startPosY + 10, 40, 120);
+            }
+            base.DrawArmorAirCraft(g);
         }
-
-        public void moveAirCraft(Direction direction)
+        public override void MoveAirCraft(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
@@ -60,17 +76,6 @@ namespace WindowsArmorAirCraft
                         _startPosY += step;
                     break;
             }
-        }
-        public void DrawAirCraft(Graphics g)
-        {
-            Pen pen = new Pen(Color.Gray);
-            g.DrawEllipse(pen, _startPosX + 80, _startPosY + 50, 250, 50);
-            g.DrawEllipse(pen, _startPosX + 220, _startPosY-35, 80 , 220);
-            g.DrawEllipse(pen, _startPosX + 110, _startPosY+10, 30, 120);
-            Brush filler = new SolidBrush(DopColor);
-            g.FillEllipse(filler, _startPosX + 80, _startPosY + 50, 250, 50);
-            g.FillEllipse(filler, _startPosX + 220, _startPosY - 35, 80, 220);
-            g.FillEllipse(filler, _startPosX + 110, _startPosY + 10, 30, 120);
         }
     }
 }
