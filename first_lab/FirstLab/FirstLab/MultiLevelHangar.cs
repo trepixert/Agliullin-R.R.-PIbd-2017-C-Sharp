@@ -10,7 +10,7 @@ namespace WindowsArmorAirCraft
     class MultiLevelHangar
     {
         List<Hangar<IArmorAirCraft>> hangarStages;
-        private const int countPlaces = 20;
+        private const int countPlaces = 2;
         private int pictureWidth;
         private int pictureHeight;
 
@@ -51,15 +51,16 @@ namespace WindowsArmorAirCraft
                         WriteToFile("Level:" + Environment.NewLine, fs);
                         for (int i = 0; i < countPlaces; i++)
                         {
-                            var airCraft = level[i];
-                            if (airCraft != null)
+                            try
                             {
+                                var airCraft = level[i];
                                 if (airCraft.GetType().Name.Equals("BaseArmorAirCraft"))
                                     WriteToFile(i + ":BaseArmorAirCraft:", fs);
                                 if (airCraft.GetType().Name.Equals("AirCraft"))
                                     WriteToFile(i + ":AirCraft:", fs);
                                 WriteToFile(airCraft + Environment.NewLine, fs);
                             }
+                            finally { }
                         }
                     }
                 }
@@ -76,7 +77,7 @@ namespace WindowsArmorAirCraft
         public bool LoadData(string path)
         {
             if (!File.Exists(path))
-                return false;
+                throw new FileNotFoundException();
             string bufferTextFromFile = "";
             using (FileStream fs = new FileStream(path, FileMode.Open))
             {
@@ -98,7 +99,7 @@ namespace WindowsArmorAirCraft
                 hangarStages = new List<Hangar<IArmorAirCraft>>(count);
             }
             else
-                return false;
+                throw new Exception("Неверный формат файла");
             int counter = -1;
             IArmorAirCraft armorAirCraft = null;
             for (int i = 1; i < strs.Length; ++i)

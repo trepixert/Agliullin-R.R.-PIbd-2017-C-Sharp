@@ -28,7 +28,7 @@ namespace WindowsArmorAirCraft
         {
             if (p._places.Count == p._maxCount)
             {
-                return -1;
+                throw new HangarOverfowException();
             }
             for (int i = 0; i < p._maxCount; i++)
             {
@@ -49,7 +49,7 @@ namespace WindowsArmorAirCraft
                 p._places.Remove(index);
                 return airCraft;
             }
-            return null;
+            throw new HangarNotFoundException(index);
         }
         private bool CheckFreePlace(int index)
         {
@@ -66,7 +66,7 @@ namespace WindowsArmorAirCraft
         {
             Pen pen = new Pen(Color.Black, 3);
             g.DrawRectangle(pen, 0, 0, (_maxCount / 5) * _placeSizeWidth, 480);
-            for(int i = 0; i < _maxCount / 5; i++)
+            for(int i = 0; i < _maxCount; i++)
             {
                 for (int j = 0; j < 4; ++j)
                 {
@@ -81,7 +81,7 @@ namespace WindowsArmorAirCraft
             {
                 if (_places.ContainsKey(ind))
                     return _places[ind];
-                return null;
+                throw new HangarNotFoundException(ind);
             }
             set
             {
@@ -89,7 +89,11 @@ namespace WindowsArmorAirCraft
                 {
                     _places.Add(ind, value);
                     _places[ind].SetPosition(5 + ind / 10 * _placeSizeWidth - 80, ind % 5 *
-(_placeSizeHeight + 145)+40, PictureWidth, PictureHeight);
+(_placeSizeHeight + 145) + 40, PictureWidth, PictureHeight);
+                }
+                else
+                {
+                    throw new HangarOccupiedPlaceException(ind);
                 }
             }
         }
