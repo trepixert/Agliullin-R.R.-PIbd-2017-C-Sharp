@@ -21,7 +21,6 @@ namespace WindowsArmorAirCraft
         public FormHangar()
         {
             InitializeComponent();
-            logger = LogManager.GetCurrentClassLogger();
             hangar = new MultiLevelHangar(countLevel, pictureBox1.Width, pictureBox2.Height);
             for(int i = 0; i < countLevel; i++)
             {
@@ -40,8 +39,6 @@ namespace WindowsArmorAirCraft
                 pictureBox1.Image = bmp;
             }
         }
-
-        
 
         private void buttonGetCar_Click(object sender, EventArgs e)
         {
@@ -65,7 +62,6 @@ namespace WindowsArmorAirCraft
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         pictureBox2.Image = bmp;
                         MessageBox.Show(ex.Message, "Не найден самолет", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        logger.Error("Не найден самолет по месту: " + maskedTextBox1.Text);
                         Draw();
                     }
                     catch(Exception ex)
@@ -89,6 +85,7 @@ namespace WindowsArmorAirCraft
         }
 
         private void AddAirCraft(IArmorAirCraft airCraft)
+
         {
             if (airCraft != null && listBoxLevels.SelectedIndex > -1)
             {
@@ -100,7 +97,6 @@ namespace WindowsArmorAirCraft
                 }
                 catch (HangarOverfowException ex)
                 {
-                    logger.Error("Переполнение");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch(Exception ex)
@@ -122,7 +118,6 @@ namespace WindowsArmorAirCraft
                 }
                 catch(Exception ex)
                 {
-                    logger.Error("Неизвестная ошибка при сохранении");
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -143,17 +138,15 @@ namespace WindowsArmorAirCraft
                 }
                 catch (HangarOccupiedPlaceException ex)
                 {
-                    logger.Error("Занятое место");
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Неизвестная ошибка при загрузке");
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                Draw();
+                Draw();
             }
         }
     }
