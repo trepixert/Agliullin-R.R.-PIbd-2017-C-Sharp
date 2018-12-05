@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 
 namespace WindowsArmorAirCraft
 {
@@ -15,6 +16,8 @@ namespace WindowsArmorAirCraft
         MultiLevelHangar hangar;
         private const int countLevel = 5;
         FormAirCraftConfig form;
+        private Logger logger;
+        private Logger errorsLogger;
         public FormHangar()
         {
             InitializeComponent();
@@ -37,64 +40,34 @@ namespace WindowsArmorAirCraft
             }
         }
 
-        private void buttonSetAirCraft_Click(object sender, EventArgs e)
-        {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var airCraft = new BaseArmorAirCraft(100, 1000, dialog.Color);
-                int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
-                if (place == -1)
-                {
-                    MessageBox.Show("Нет свободных мест!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                Draw();
-            }
-        }
-
-        private void buttonSetCoolAirCraft_Click(object sender, EventArgs e)
-        {
-            if (listBoxLevels.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var airCraft = new AirCraft(100, 1000, dialog.Color, dialogDop.Color, true, true, Color.Black);
-                        int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
-                        if (place == -1)
-                        {
-                            MessageBox.Show("Нет свободных мест!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        Draw();
-                    }
-                }
-            }
-        }
-
         private void buttonGetCar_Click(object sender, EventArgs e)
         {
             if (listBoxLevels.SelectedIndex > -1)
             {
                 if (maskedTextBox1.Text != "")
                 {
-                    var airCraft = hangar[listBoxLevels.SelectedIndex] - Convert.ToInt32(maskedTextBox1.Text);
-                    if (airCraft != null)
+                    try
                     {
+                        var airCraft = hangar[listBoxLevels.SelectedIndex] - Convert.ToInt32(maskedTextBox1.Text);
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         Graphics gr = Graphics.FromImage(bmp);
                         airCraft.SetPosition(40, 40, pictureBox2.Width, pictureBox2.Height);
                         airCraft.DrawArmorAirCraft(gr);
                         pictureBox2.Image = bmp;
+                        logger.Info("Изъят самолет " + airCraft.ToString() + " с места: " + maskedTextBox1.Text);
+                        Draw();
                     }
-                    else
+                    catch (HangarNotFoundException ex)
                     {
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         pictureBox2.Image = bmp;
+                        MessageBox.Show(ex.Message, "Не найден самолет", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Draw();
                     }
-                    Draw();
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -116,11 +89,20 @@ namespace WindowsArmorAirCraft
         {
             if (airCraft != null && listBoxLevels.SelectedIndex > -1)
             {
-                int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
-                if (place > -1)
+                try
+                {
+                    int place = hangar[listBoxLevels.SelectedIndex] + airCraft;
+                    logger.Info("Добавлен самолет " + airCraft.ToString() + " на место: " + place);
                     Draw();
-                else
-                    MessageBox.Show("Машину не удалось поставить!");
+                }
+                catch (HangarOverfowException ex)
+                {
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -128,15 +110,16 @@ namespace WindowsArmorAirCraft
         {
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if (hangar.SaveData(saveFileDialog.FileName))
-                {
+                try {
+                    hangar.SaveData(saveFileDialog.FileName);
                     MessageBox.Show("Сохранение прошло успешно", "Результат",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -146,15 +129,22 @@ namespace WindowsArmorAirCraft
         {
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if (hangar.LoadData(openFileDialog.FileName))
+                try
                 {
+                    hangar.LoadData(openFileDialog.FileName);
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
+                    MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                 }
-                else
+                catch (HangarOccupiedPlaceException ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Draw();
             }
