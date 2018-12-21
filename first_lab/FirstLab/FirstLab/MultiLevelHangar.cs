@@ -37,7 +37,7 @@ namespace WindowsArmorAirCraft
             }
         }
 
-        public bool SaveData(string path)
+        public void SaveData(string path)
         {
             if (File.Exists(path))
                 File.Delete(path);
@@ -49,23 +49,22 @@ namespace WindowsArmorAirCraft
                     foreach (var level in hangarStages)
                     {
                         WriteToFile("Level:" + Environment.NewLine, fs);
-                        for (int i = 0; i < countPlaces; i++)
+                        foreach (IArmorAirCraft airCraft in level)
                         {
-                            try
+                            if (airCraft.GetType().Name == "BaseArmorAirCraft")
                             {
-                                var airCraft = level[i];
-                                if (airCraft.GetType().Name.Equals("BaseArmorAirCraft"))
-                                    WriteToFile(i + ":BaseArmorAirCraft:", fs);
-                                if (airCraft.GetType().Name.Equals("AirCraft"))
-                                    WriteToFile(i + ":AirCraft:", fs);
-                                WriteToFile(airCraft + Environment.NewLine, fs);
+                                WriteToFile(level.GetKey + ":BaseArmorAirCraft:", fs);
                             }
-                            finally { }
-                        }
+                            if (airCraft.GetType().Name == "AirCraft")
+                            {
+                                WriteToFile(level.GetKey + ":AirCraft:", fs);
+                            }
+                            //Записываемые параметры
+                            WriteToFile(airCraft + Environment.NewLine, fs);
+                        }
                     }
                 }
             }
-            return true;
         }
 
         public void WriteToFile(string text, FileStream stream)
@@ -74,7 +73,7 @@ namespace WindowsArmorAirCraft
             stream.Write(info, 0, info.Length);
         }
 
-        public bool LoadData(string path)
+        public void LoadData(string path)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException();
@@ -121,7 +120,11 @@ namespace WindowsArmorAirCraft
                     armorAirCraft = new AirCraft(strs[i].Split(':')[2]);
                 hangarStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = armorAirCraft;
             }   
-            return true;
+        }
+
+        public void Sort()
+        {
+            hangarStages.Sort();
         }
     }
 }

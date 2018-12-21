@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AbstractArmorAirCraft.cs" />
     <Compile Include="BaseArmorAirCraft.cs" />
+    <Compile Include="HangarAlreadyHaveException.cs" />
     <Compile Include="HangarNotFoundException.cs" />
     <Compile Include="HangarOccupiedPlaceException.cs" />
     <Compile Include="HangarOverfowException.cs" />
