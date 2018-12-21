@@ -22,7 +22,7 @@ namespace WindowsArmorAirCraft
         {
             InitializeComponent();
             logger = LogManager.GetCurrentClassLogger();
-            hangar = new MultiLevelHangar(countLevel, pictureBox1.Width, pictureBox2.Height);
+            hangar = new MultiLevelHangar(countLevel, pictureBoxMain.Width, pictureBoxRemoved.Height);
             for(int i = 0; i < countLevel; i++)
             {
                 listBoxLevels.Items.Add("Уровень: " + (i + 1));
@@ -34,14 +34,12 @@ namespace WindowsArmorAirCraft
         {
             if (listBoxLevels.SelectedIndex > -1)
             {
-                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
                 Graphics gr = Graphics.FromImage(bmp);
                 hangar[listBoxLevels.SelectedIndex].Draw(gr);
-                pictureBox1.Image = bmp;
+                pictureBoxMain.Image = bmp;
             }
         }
-
-        
 
         private void buttonGetCar_Click(object sender, EventArgs e)
         {
@@ -52,18 +50,18 @@ namespace WindowsArmorAirCraft
                     try
                     {
                         var airCraft = hangar[listBoxLevels.SelectedIndex] - Convert.ToInt32(maskedTextBox1.Text);
-                        Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                        Bitmap bmp = new Bitmap(pictureBoxRemoved.Width, pictureBoxRemoved.Height);
                         Graphics gr = Graphics.FromImage(bmp);
-                        airCraft.SetPosition(40, 40, pictureBox2.Width, pictureBox2.Height);
+                        airCraft.SetPosition(40, 40, pictureBoxRemoved.Width, pictureBoxRemoved.Height);
                         airCraft.DrawArmorAirCraft(gr);
-                        pictureBox2.Image = bmp;
+                        pictureBoxRemoved.Image = bmp;
                         logger.Info("Изъят самолет " + airCraft.ToString() + " с места: " + maskedTextBox1.Text);
                         Draw();
                     }
                     catch (HangarNotFoundException ex)
                     {
-                        Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-                        pictureBox2.Image = bmp;
+                        Bitmap bmp = new Bitmap(pictureBoxRemoved.Width, pictureBoxRemoved.Height);
+                        pictureBoxRemoved.Image = bmp;
                         MessageBox.Show(ex.Message, "Не найден самолет", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         logger.Error("Не найден самолет по месту: " + maskedTextBox1.Text);
                         Draw();
@@ -158,7 +156,8 @@ namespace WindowsArmorAirCraft
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                Draw();
+                Draw();
+
             }
         }
 

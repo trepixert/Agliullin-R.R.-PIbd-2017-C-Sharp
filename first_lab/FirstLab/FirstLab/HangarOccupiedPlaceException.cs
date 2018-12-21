@@ -8,7 +8,7 @@ namespace WindowsArmorAirCraft
 {
     class HangarOccupiedPlaceException : Exception
     {
-        public HangarOccupiedPlaceException(int i):base("На месте: "+i+" уже стоит автомобиль")
+        public HangarOccupiedPlaceException(int i):base("На месте: "+i+" уже стоит самолет")
         {}
     }
 }
